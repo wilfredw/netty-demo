@@ -11,6 +11,7 @@
     <modules>
         <module>echo-server</module>
         <module>echo-client</module>
+        <module>hi-server</module>
     </modules>
 
     <dependencies>
