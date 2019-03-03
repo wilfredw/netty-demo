@@ -4,6 +4,7 @@ package com.wei.netty.echo.server;
 import com.wei.netty.echo.server.handler.EchoServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -18,6 +19,7 @@ public class EchoServer {
     public EchoServer(int port) {
         this.port = port;
     }
+
     public static void main(String[] args) throws Exception {
         if (args.length != 1) {
             System.err.println(
@@ -46,6 +48,19 @@ public class EchoServer {
                     });
 
             ChannelFuture f = b.bind().sync();            //8
+            f.addListener(new ChannelFutureListener() {
+
+                              public void operationComplete(ChannelFuture channelFuture)
+                                      throws Exception {
+                                  if (channelFuture.isSuccess()) {
+                                      System.out.println("Server bound");
+                                  } else {
+                                      System.err.println("Bound attempt failed");
+                                      channelFuture.cause().printStackTrace();
+                                  }
+                              }
+                          }
+            );
             System.out.println(EchoServer.class.getName() + " started and listen on " + f.channel().localAddress());
             f.channel().closeFuture().sync();            //9
         } finally {

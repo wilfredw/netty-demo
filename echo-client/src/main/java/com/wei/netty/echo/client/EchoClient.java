@@ -3,6 +3,7 @@ package com.wei.netty.echo.client;
 import com.wei.netty.echo.client.handler.EchoClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -38,6 +39,19 @@ public class EchoClient {
                     });
 
             ChannelFuture f = b.connect().sync();        //6
+
+            f.addListener(new ChannelFutureListener() {
+
+                public void operationComplete(ChannelFuture channelFuture)
+                        throws Exception {
+                    if (channelFuture.isSuccess()) {
+                        System.out.println("Connection established");
+                    } else {
+                        System.err.println("Connection attempt failed");
+                        channelFuture.cause().printStackTrace();
+                    }
+                }
+            });
 
             f.channel().closeFuture().sync();            //7
         } finally {
