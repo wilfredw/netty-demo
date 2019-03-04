@@ -9,8 +9,10 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.concurrent.ScheduledFuture;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.TimeUnit;
 
 public class EchoServer {
 
@@ -62,6 +64,14 @@ public class EchoServer {
                           }
             );
             System.out.println(EchoServer.class.getName() + " started and listen on " + f.channel().localAddress());
+
+            ScheduledFuture<?> future = f.channel().eventLoop().scheduleAtFixedRate(
+                    new Runnable() {
+
+                        public void run() {
+                            System.out.println("Run every 60 seconds");
+                        }
+                    }, 10, 20, TimeUnit.SECONDS);
             f.channel().closeFuture().sync();            //9
         } finally {
             group.shutdownGracefully().sync();            //10
