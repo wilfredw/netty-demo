@@ -7,6 +7,9 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+
 @ChannelHandler.Sharable                                //1
 public class EchoClientHandler extends
         SimpleChannelInboundHandler<ByteBuf> {
@@ -20,6 +23,7 @@ public class EchoClientHandler extends
     @Override
     public void channelRead0(ChannelHandlerContext ctx,
                              ByteBuf in) {
+        ConcurrentHashMap<String, String> testMap = null;
         System.out.println("Client received: " + in.toString(CharsetUtil.UTF_8));    //3
     }
 
