@@ -43,4 +43,11 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
     public void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         group.writeAndFlush(msg.retain());    //6
     }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        System.out.println("HttpRequestHandler exceptionCaught");
+        cause.printStackTrace();
+        ctx.fireExceptionCaught(cause);
+    }
 }
