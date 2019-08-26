@@ -13,6 +13,7 @@
         <module>echo-client</module>
         <module>hi-server</module>
         <module>websocket-server</module>
+        <module>websocket-client</module>
     </modules>
 
     <dependencies>
