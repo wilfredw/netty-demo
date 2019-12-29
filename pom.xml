@@ -14,6 +14,8 @@
         <module>hi-server</module>
         <module>websocket-server</module>
         <module>websocket-client</module>
+        <module>bio-time-server</module>
+        <module>bio-time-client</module>
     </modules>
 
     <dependencies>
