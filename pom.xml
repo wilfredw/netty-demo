@@ -16,6 +16,8 @@
         <module>websocket-client</module>
         <module>bio-time-server</module>
         <module>bio-time-client</module>
+        <module>nio-time-server</module>
+        <module>nio-time-client</module>
     </modules>
 
     <dependencies>
