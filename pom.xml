@@ -18,6 +18,8 @@
         <module>bio-time-client</module>
         <module>nio-time-server</module>
         <module>nio-time-client</module>
+        <module>netty-time-server</module>
+        <module>netty-time-client</module>
     </modules>
 
     <dependencies>
