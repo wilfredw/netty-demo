@@ -20,6 +20,8 @@
         <module>nio-time-client</module>
         <module>netty-time-server</module>
         <module>netty-time-client</module>
+        <module>protobuf-server</module>
+        <module>protobuf-client</module>
     </modules>
 
     <dependencies>

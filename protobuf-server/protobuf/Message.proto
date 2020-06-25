@@ -1,0 +1,10 @@
+package dto;
+option java_package = "com.wei.netty.protobuf.common.model.dto";
+option java_outer_classname = "MessageDTO";
+
+message Message {
+  required int32 messageId = 1;
+  required string messageType = 2;
+  required string data = 3;
+  repeated string param = 4;
+}
